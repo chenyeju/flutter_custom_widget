@@ -12,13 +12,19 @@ class VideoPlayerWidget extends StatefulWidget {
 }
 
 class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
-  late final PlayerController _playerController;
+  final PlayerController _playerController = PlayerController();
 
   @override
   void initState() {
     super.initState();
-    _playerController = Get.put(PlayerController(), tag: widget.videoUrl);
+    // _playerController = Get.put(PlayerController(), tag: widget.videoUrl);
     _playerController.initializeVideoPlayerController(widget.videoUrl);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _playerController.disposeVideo();
   }
 
   @override
